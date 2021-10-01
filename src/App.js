@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React, { Component } from "react";
 import './App.css';
+import FrontPage from './components/FrontPage';
+import Header from './components/Layout/Header';
+import "bootstrap/dist/css/bootstrap.min.css";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import AddInternHistory from './components/internHistory/AddInternHistory';
+import { Provider } from "react-redux";
+import store from './store';
+import UpdateHistory from "./components/internHistory/UpdateHistory";
 
 function App() {
   return (
+    <Provider store={store}>
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Header/>
+ <Route exact path="/frontPage" component ={ FrontPage }/>
+ <Route exact path="/addInternHistory" component ={ AddInternHistory}/>
+ <Route exact path="/updateInternHistory/:id" component ={ UpdateHistory}/>
     </div>
+    </Router>
+    </Provider>
   );
 }
 
